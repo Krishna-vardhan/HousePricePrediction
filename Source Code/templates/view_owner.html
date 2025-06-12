@@ -1,0 +1,44 @@
+{% include 'ahead.html' %}
+<body class="bg-admin2">
+
+<div class="title text-center mt-80">view owner list </div>
+<div class="p-20">
+
+<table border="1" class="table mt-20 ">
+    <thead>
+        <tr>
+            <th>owner_id</th>
+            <th>name</th>
+            <th>email</th>
+            <th>phone</th>
+
+            <th>address</th>
+            <th>status</th>
+            <th>action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            {% for owner in owners %}
+                <td>{{owner[0]}}</td>
+                <td>{{owner[1]}}</td>
+                <td>{{owner[2]}}</td>
+                <td>{{owner[3]}}</td>
+                <td>{{owner[5]}}</td>
+                <td>{{owner[6]}}</td>
+                <td>
+                    {% if owner[6]=='unauthorized' %}
+                        <a href="authorized_owner?owner_id={{owner[0]}}" class=" btn btn-secondary">authorized now</a>
+                    {% else %}
+                        <a href="unauthorized_owner?owner_id={{owner[0]}} " class=" btn btn-danger">unauthorized now</a>
+                    {% endif %}
+
+                </td>
+
+        </tr>
+    {% endfor %}
+    </tbody>
+
+</table>
+</div>
+</body>

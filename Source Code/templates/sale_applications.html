@@ -1,0 +1,71 @@
+{% if session['role']== 'owner'%}
+    {% include 'ohead.html' %}
+{% else %}
+    {% include 'uhead.html' %}
+{% endif %}
+
+
+
+
+
+
+
+
+
+<body class="bg-admin2">
+<div class="p1-20">
+  <div class="title1 text-center1"></div>
+  <div class="row">
+    {% for sale_property_request in sale_property_requests %}
+      {% set users=get_user_id_by_user_name(sale_property_request[4])%}
+      {% set sales= get_sale_property_id_by_sale_property_title(sale_property_request[5])%}
+      <div class="p-20">
+          <div class="card mt-30 p-20">
+              <div class="row">
+
+                  <div class="col-4">
+                      <div><strong>{{sales[1]}}</strong></div>
+                  </div>
+                  <div class="col-8">
+                    <div><strong>Status:</strong>{{sale_property_request[3]}}</div>
+                  </div>
+              </div>
+              <div class="row">
+
+                  <div class="col-4">
+                      <div><strong>User id: </strong>{{users[1]}}</div>
+                  </div>
+                  <div class="col-8">
+                      <div><strong>Date: </strong>{{sale_property_request[2]}}</div>
+                  </div>
+              </div>
+              <div>
+                  <div><strong>Summary: </strong>{{sale_property_request[1]}}</div>
+              </div>
+              {% if session['role']== 'owner' %}
+               {% if sale_property_request[3]=='Applied for sale'%}
+                      <div class="row mt-20">
+                          <div class="col-6">
+                              <div>
+                                <a href="accept_request_sale?sale_property_request_id={{sale_property_request[0]}}&sale_property_id={{sale_property_request[5]}}" class="btn btn-primary">ACCEPT</a>
+                              </div>
+                          </div>
+                          <div class="col-6">
+                              <div class="lm-20">
+                                <a href="reject_request_sale?sale_property_request_id={{sale_property_request[0]}}" class="btn btn-primary ">REJECT</a>
+                              </div>
+                          </div>
+                      </div>
+              {% endif %}
+               {% endif %}
+          </div>
+      </div>
+      {% endfor %}
+  </div>
+</div>
+</body>
+
+
+
+
+

@@ -1,0 +1,227 @@
+{% if session['role']== 'owner'%}
+    {% include 'ohead.html' %}
+{% else %}
+    {% include 'uhead.html' %}
+{% endif %}
+<body class="bg-admin2">
+
+<div class="row">
+    <div class="col-4"></div>
+    <div class="col-4">
+        <div class="card mt-80 p-20">
+            <form action="add_rental_action" method="post" enctype="multipart/form-data">
+                <div class="title text-center">Add Rentals</div>
+                <div class="row">
+                    <div class="col-6">
+                        <label for="property_title">Property Title</label>
+                        <div class="form-group">
+
+                            <input type="text" name="property_title" id="property_title" placeholder="Enter Property Title" required class="form-control3">
+
+                        </div>
+
+                    </div>
+                    <div class="col-6">
+                        <label for="property_type">Property Type</label>
+                        <div class="form-group">
+
+                            <input type="text" name="property_type" id="property_type" placeholder="Property Type" required class="form-control3">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6">
+                        <label for="property_value">Property Value</label>
+                        <div class="form-group">
+
+                            <input type="number" name="property_value" id="property_value" placeholder="Property Value" required class="form-control3">
+
+                        </div>
+
+                    </div>
+                    <div class="col-6">
+                        <label for="area_in_sqft">Area in Sqft</label>
+                        <div class="form-group">
+
+                            <input type="number" name="area_in_sqft" id="area_in_sqft" placeholder="Area in Sqf" required class="form-control3">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6">
+                        <label for="number_of_bedrooms">Bedrooms</label>
+                        <div class="form-group">
+
+                            <input type="number" name="number_of_bedrooms" id="number_of_bedrooms" placeholder="Number of Bedrooms" required class="form-control3">
+
+                        </div>
+
+                    </div>
+                    <div class="col-6">
+                        <label for="number_of_bathrooms">Bathrooms</label>
+                        <div class="form-group">
+
+                            <input type="number" name="number_of_bathrooms" id="number_of_bathrooms" placeholder="Enter Number of Bathrooms" required class="form-control3">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6">
+                        <label for="security_deposit">Security Deposit</label>
+                        <div class="form-group">
+
+                            <input type="number" name="security_deposit" id="security_deposit" placeholder="Enter Security Deposit" required class="form-control3">
+
+                        </div>
+
+                    </div>
+                    <div class="col-6">
+                        <label for="city">City</label>
+                        <div class="form-group">
+                            <select name="city" id="city" class="form-control3">
+                                <option value="">choose city</option>
+                                <option>New York</option>
+                                <option>Los Angeles</option>
+                                <option>Chicago</option>
+                                <option>Dallas</option>
+                                <option>Houston</option>
+                                <option>Washington</option>
+                                <option>Philadelphia</option>
+                                <option>Miami</option>
+                                <option>Atlanta</option>
+                                <option>Boston</option>
+                                <option>Phoenix</option>
+                                <option>San Francisco</option>
+                                <option>Riverside</option>
+                                <option>Detroit</option>
+                                <option>Seattle</option>
+                                <option>Minneapolis</option>
+                                <option>San Diego</option>
+                                <option>Tampa</option>
+                                <option>Denver</option>
+                                <option>Baltimore</option>
+                                <option>St. Louis</option>
+                                <option>Racine</option>
+                                <option>Bend</option>
+                                <option>Saginaw</option>
+                                <option>Warner Robins</option>
+                                <option>Torrington</option>
+                                <option>Punta Gorda</option>
+                                <option>Redding</option>
+                                <option>Kingston</option>
+                                <option>Panama City</option>
+                                <option>Joplin</option>
+                                <option>Dover</option>
+                                <option>Bowling Green</option>
+                                <option>St. George</option>
+                                <option>Muskegon</option>
+                                <option>Abilene</option>
+                                <option>Iowa City</option>
+                                <option>Auburn</option>
+                                <option>Midland</option>
+                                <option>Bloomington</option>
+                                <option>Oshkosh</option>
+                                <option>Eau Claire</option>
+                                <option>Waterloo</option>
+                                <option>Coeur d'Alene</option>
+                                <option>East Stroudsburg</option>
+                                <option>Pueblo</option>
+                                <option>Wausau</option>
+                                <option>Kahului</option>
+                                <option>Janesville</option>
+                                <option>Sebastian</option>
+                                <option>Madera</option>
+                                <option>Chambersburg</option>
+                                <option>Idaho Falls</option>
+                                <option>Grand Junction</option>
+                                <option>Elizabethtown</option>
+                                <option>Niles</option>
+                                <option>Monroe</option>
+                                <option>Santa Fe</option>
+                                <option>Alexandria</option>
+                                <option>Traverse City</option>
+                                <option>Homosassa Springs</option>
+                                <option>Jefferson City</option>
+                                <option>Dothan</option>
+                                <option>Ottawa</option>
+                                <option>Valdosta</option>
+                                <option>Flagstaff</option>
+                                <option>Rocky Mount</option>
+                                <option>Pottsville</option>
+                                <option>Morristown</option>
+                                <option>Winchester</option>
+                                <option>Rapid City</option>
+                                <option>Sumter</option>
+                                <option>Battle Creek</option>
+                                <option>Sherman</option>
+                                <option>Jonesboro</option>
+                                <option>Bismarck</option>
+                                <option>Mount Vernon</option>
+                                <option>The Villages</option>
+                                <option>Lawton</option>
+                                <option>Sierra Vista</option>
+                                <option>New Bern</option>
+                                <option>Wenatchee</option>
+                                <option>Holland</option>
+                                <option>Goldsboro</option>
+                                <option>Brunswick</option>
+                                <option>Roseburg</option>
+                                <option>Tullahoma</option>
+                                <option>Decatur</option>
+                                <option>LaGrange</option>
+                                <option>Truckee</option>
+                                <option>Sebring</option>
+                                <option>Cheyenne</option>
+                                <option>Hot Springs</option>
+                                <option>Pinehurst</option>
+                                <option>Rome</option>
+                                <option>Sevierville</option>
+                                <option>Ocean City</option>
+                                <option>Oak Harbor</option>
+                                <option>Kokomo</option>
+                                <option>Key West</option>
+                                <option>Seneca</option>
+                                <option>Heber</option>
+                                <option>Morehead City</option>
+                                <option>Georgetown</option>
+                                <option>Kill Devil Hills</option>
+                                <option>Breckenridge</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <label for="address">Address</label>
+                <div class="form-group">
+
+                    <textarea name="address" id="address" placeholder="Address" class="form-control"></textarea>
+
+                </div>
+                
+
+
+
+
+                <label for="pictures">Pictures</label>
+                <div class="form-group">
+
+                    <input type="file" name="pictures" id="pictures" multiple required class="form-control">
+                </div>
+                
+
+                <div>
+                    <input type="submit"class="btn mt-20 btn-secondary btn-secondary:hover" value="ADD">
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+    <div class="col-4"></div>
+</div>
+</body>

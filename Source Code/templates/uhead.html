@@ -1,0 +1,95 @@
+{% include 'link.html' %}
+  <style>
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      padding: 20px 20px;
+      display: block;
+
+      color: white;
+      border-radius: 4px;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: white;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+      z-index: 1;
+      border-radius: 4px;
+      padding: 10px;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown-content form {
+      margin: 5px 0;
+    }
+
+    .dropdown-content button {
+      width: 100%;
+      padding: 8px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .dropdown-content button:hover {
+      background-color: #218838;
+    }
+  </style>
+
+
+
+
+<nav class="row bg-primary ">
+    <div class="col-6">
+        <div class="row">
+            <div class="col-2">
+               <div class="dropdown">
+          <a href="/user_home" class="nav-link">USER</a>
+          <div class="dropdown-content">
+            <form action="Zori" >
+              <button type="submit">Zori</button>
+            </form>
+            <form action="zhvi_yoy" >
+              <button type="submit">zhvi_yoy</button>
+            </form>
+            <form action="ZHVI" >
+              <button type="submit">ZHVI</button>
+            </form>
+          </div>
+    </div>
+            </div>
+            <div class="col-2">
+               <div><a href="/view_rental" class="nav-link">RENTAL</a></div>
+            </div>
+            <div class="col-2">
+                <div><a href="/view_sales" class="nav-link">SALES</a></div>
+            </div>
+            <div class="col-4">
+                <div><a href="/rental_applications" class="nav-link">VIEW APPLICATIONS</a></div>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="row">
+            <div class="col-8"></div>
+
+            <div class="col-2"></div>
+            <div class="col-2">
+                <div><a href="/logout" class="nav-link">LOGOUT</a></div>
+        </div>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,24 @@
+{% include 'ahead.html' %}
+<body class="bg-admin2">
+
+<div>
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <div class="card mt-130 p-20">
+                <form action="rental_value_action" method="post" enctype="multipart/form-data">
+                    <div class="title text-center">ADD RENTAL VALUE</div>
+
+                    <div class="form-group">
+                        <label for="file">File</label>
+                        <input type="file" name="file" id="file" required class="form-control">
+                    </div>
+                    <div class="mt-20">
+                        <input type="submit" value="ADD" class="btn btn-primary">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>

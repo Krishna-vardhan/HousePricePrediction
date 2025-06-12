@@ -1,0 +1,24 @@
+{% include 'uhead.html' %}
+<div>
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <div class="card mt-130 p-20">
+                <form action="send_rental_request_action" method="post">
+                    <input type="hidden" name="rental_property_id" id="rental_property_id" value="{{rental_property_id}}">
+                    <div class="form-group">
+                        <label for="summary">Summary</label>
+                        <textarea name="summary" id="summary" placeholder="Enter Summary" class="form-control"></textarea>
+                    </div>
+
+                    <div class="mt-20">
+                        <input type="submit" value="SEND REQUEST" class="btn btn-primary">
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+        <div class="col-4"></div>
+    </div>
+</div>

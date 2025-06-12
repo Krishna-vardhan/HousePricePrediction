@@ -1,0 +1,143 @@
+
+
+
+
+{% if session['role']== 'owner'%}
+    {% include 'ohead.html' %}
+{% else %}
+    {% include 'uhead.html' %}
+{% endif %}
+{% if session['role']== 'owner'%}
+
+    <div class="row">
+        <div class="col-10"></div>
+        <div class="col-2">
+            <div><a href="/sales_properties" class="href btn1 btn-secondary mt-5 text-center">ADD SALES</a></div>
+        </div>
+    </div>
+{% endif %}
+{% if session['role']== 'user'%}
+    <div class="row">
+        <div class="col-10"></div>
+        <div class=""></div>
+        <div class="col-2">
+            <div><a href="/check_buying_affordability" class="href btn btn-secondary mt-5 text-center"> Check Buying Affordability </a></div>
+        </div>
+    </div>
+{% endif %}
+<body class="bg-admin2">
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+            <div class="p-20">
+                {% for sale_property in sale_properties %}
+                {% set sale_property_pictures=get_sale_property_pictures_by_sale_property_id(sale_property[0]) %}
+                  {% set owners= get_owner_by_owner_id(sale_property[12]) %}
+            <div class="card mb-20">
+                <div class="row">
+                    <div class="col-3 p-20">
+                        
+                        <div class="rental-image rental-image img">
+                            {% for sale_property_picture in sale_property_pictures %}
+                                <div><img src="../static/property_image/{{sale_property_picture[2]}}"class="mt-10" style="width:100px;"></div>
+                            {% endfor %}
+                        </div>
+
+                    </div>
+                    <div class="col-6 p-20">
+                        <div class="title text-center">{{sale_property[1]}}</div>
+                        <div class="row mt-10">
+                            <div class="col-5">
+                                <div><strong>Property Value: </strong>${{sale_property[2]}}</div>
+                            </div>
+                            <div class="col-2"></div>
+                            <div class="col-5">
+                                <div><strong>Residency Type:  </strong>{{sale_property[10]}}</div>
+                            </div>
+                        </div>
+                        <div class="row mt-10">
+                            <div class="col-5">
+                                <div><strong>Bedrooms: </strong>{{sale_property[3]}}</div>
+                            </div>
+                            <div class="col-2"></div>
+                            <div class="col-5">
+                                <div><strong>Bathrooms: </strong> {{sale_property[4]}}</div>
+                            </div>
+                        </div>
+                        <div class="row mt-10">
+                            <div class="col-5">
+                                <div><strong>Area :  </strong>{{sale_property[5]}} sqft</div>
+                            </div>
+                            <div class="col-2"></div>
+                            <div class="col-5">
+                                <div><strong>Address: </strong> {{sale_property[6]}}</div>
+                            </div>
+                        </div>
+                        <div class="row mt-10">
+                            <div class="col-5">
+                                <div><strong>Price Per SquareFeet: </strong> {{sale_property[7]}} </div>
+                            </div>
+                            <div class="col-2"></div>
+                            <div class="col-5">
+                                <div><strong>Build Area: </strong> {{sale_property[8]}}</div>
+                            </div>
+                        </div>
+                        <div class="row mt-10">
+                            <div class="col-5">
+                                <div><strong>Parking Space: </strong> {{sale_property[9]}}</div>
+                            </div>
+                            <div class="col-2"></div>
+                            <div class="col-5">
+                                 <div><strong>Owner: </strong> {{owners[1]}}</div>
+
+                            </div>
+                        </div>
+                        <div class="row mt-10">
+                            <div class="col-5">
+                                <div><strong>status: </strong> {{sale_property[11]}}</div>
+
+                            </div>
+                            <div class="col-2"></div>
+                            <div class="col-5">
+                                 <div><strong>city: </strong> {{sale_property[14]}}</div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3 p-20 mt-130">
+                        <div>
+                            {% if session['role']=='user'%}
+                                {% set is_requested = is_request_sent_by(sale_property[0]) %}
+                                {% if is_requested %}
+                                    <a href="sale_applications?sale_property_id={{sale_property[0]}}" class="btn btn-primary">VIEW APPLICATION</a>
+                                {% else %}
+                                    <a href="send_sale_request?sale_property_id={{sale_property[0]}}" class="btn btn-primary">SEND REQUEST</a>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+
+                            <div class="mt-20">
+                                <a href="price_prediction_sale?city={{sale_property[14]}}&property_value={{sale_property[2]}}" class="btn btn-primary">Price Prediction</a>
+
+                            </div>
+                        <div>
+                            {% if session['role']== 'owner' %}
+                                <a href="sale_applications?sale_property_id={{sale_property[0]}}" class="btn btn-primary mt-10">VIEW APPLICATIONS </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                
+                </div>
+                
+                </div>
+                {% endfor %}
+            </div>
+
+
+</div>
+    </div>
+    <div class="col-2"></div>
+</div>
+</body>
+

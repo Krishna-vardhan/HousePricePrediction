@@ -1,0 +1,126 @@
+{% if session['role']== 'owner'%}
+    {% include 'ohead.html' %}
+{% else %}
+    {% include 'uhead.html' %}
+{% endif %}
+{% if session['role']== 'owner'%}
+
+
+    <div class="row">
+        <div class="col-10"></div>
+        <div class="col-2">
+            <div><a href="/rental_properties" class="href btn1 btn-secondary mt-5 text-center">ADD RENTAL</a></div>
+        </div>
+    </div>
+{% endif %}
+{% if session['role']== 'user'%}
+    <div class="row">
+        <div class="col-10"></div>
+        <div class="col-2">
+            <div><a href="/check_rental_affordability" class="href btn btn-secondary mt-5 text-center">Check Rental Affordability </a></div>
+        </div>
+    </div>
+{% endif %}
+<body class="bg-admin2">
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+            <div class="p-20">
+            {%for rental_property in rental_properties %}
+            {% set rental_property_pictures=get_rental_property_pictures_by_rental_property_id(rental_property[0]) %}
+             {% set owners= get_owner_by_owner_id(rental_property[10]) %}
+            <div class="card mb-20">
+                <div class="row">
+                    <div class="col-3 p-20">
+                        
+                        <div class="rental-image rental-image img">
+                            {% for rental_property_picture in rental_property_pictures %}
+                                <div class=""><img src="../static/property_image/{{rental_property_picture[2]}}" class="mt-10 " style="width:100px;"></div>
+                            {% endfor %}
+                        </div>
+
+                    </div>
+                    <div class="col-6 p-20">
+                        <div class="title text-center">{{rental_property[1]}}</div>
+                        <div class="row mt-10">
+                            <div class="col-5">
+                                <div><strong>Property Type: </strong> {{rental_property[3]}}</div>
+                            </div>
+                            <div class="col-2"></div>
+                            <div class="col-5">
+                                <div><strong>Property Value:  </strong>{{rental_property[2]}}$</div>
+                            </div>
+                        </div>
+                        <div class="row mt-10">
+                            <div class="col-5">
+                                <div><strong>Bedrooms: </strong>{{rental_property[4]}}</div>
+                            </div>
+                            <div class="col-2"></div>
+                            <div class="col-5">
+                                <div><strong>Bathrooms: </strong> {{rental_property[5]}}</div>
+                            </div>
+                        </div>
+                        <div class="row mt-10">
+                            <div class="col-5">
+                                <div><strong>Area :  </strong>{{rental_property[6]}} sqft</div>
+                            </div>
+                            <div class="col-2"></div>
+                            <div class="col-5">
+                                <div><strong>Address: </strong> {{rental_property[7]}}</div>
+                            </div>
+                        </div>
+                        <div class="row mt-10">
+                            <div class="col-5">
+                                <div><strong>Security Deposit: </strong> {{rental_property[8]}}</div>
+                            </div>
+                            <div class="col-2"></div>
+                            <div class="col-5">
+                                <div><strong>Owner:</strong> {{owners[1]}}</div>
+                            </div>
+                        </div>
+                        <div class="row mt-10">
+                            <div class="col-5">
+                                 <div><strong>status: </strong> {{rental_property[9]}}</div>
+                            </div>
+                            <div class="col-2"></div>
+                            <div class="col-5">
+                            <div><strong>City: </strong> {{rental_property[12]}}</div>
+
+                        </div>
+                        </div>
+
+                    </div>
+                    <div class="col-3 p-20 mt-130">
+                        <div>
+                            {% if session['role']=='user'%}
+                                {% set is_requested = is_request_sent(rental_property[0]) %}
+                                {% if is_requested %}
+                                    <a href="rental_applications?rental_property_id={{rental_property[0]}}" class="btn btn-primary">VIEW APPLICATION</a>
+                                {% else %}
+                                    <a href="send_rental_request?rental_property_id={{rental_property[0]}}" class="btn btn-primary">SEND REQUEST</a>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                         <div class="mt-20">
+                                <a href="price_prediction?city={{rental_property[12]}}&property_value={{rental_property[2]}}"  class="btn btn-primary">Price Prediction</a>
+                         </div>
+                        <div>
+                            {% if session['role']== 'owner' %}
+                                <a href="rental_applications?rental_property_id={{rental_property[0]}}" class="btn btn-primary mt-10">VIEW APPLICATIONS </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+                <div class="col-2"></div>
+            </div>
+    </div>
+</div>
+</body>
+
+
+
+
+
+
